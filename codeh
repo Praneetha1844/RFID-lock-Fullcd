@@ -109,7 +109,7 @@ void loop(){
   Serial.println();
   Serial.print("Message : ");
   content.toUpperCase();
-  if (content.substring(1) == "57 11 48 3E") //change here the UID of the card/cards that you want to give access
+  if (content.substring(1) == "57 11 48 3E" || content.substring(1) == "7A 6A A9 15" || content.substring(1) == "CA 2D 8E 19") //change here the UID of the card/cards that you want to give access
   {
     lcd.clear();
     lcd.print("Accessed");
@@ -119,29 +119,11 @@ void loop(){
         delay(10000);
         digitalWrite(A0,LOW);
   }
-   if (content.substring(1) == "CA 2D 8E 19") //change here the UID of the card/cards that you want to give access
-  {
-    lcd.clear(); 
-    lcd.print("Accessed");
-    Serial.println();
-    digitalWrite(A0,HIGH);
-        delay(10000);
-        digitalWrite(A0,LOW);
    
-  }
-   if (content.substring(1) == "7A 6A A9 15") //change here the UID of the card/cards that you want to give access
-  {
-     lcd.clear();
-    lcd.print("Accessed");
-    Serial.println();
-    digitalWrite(A0,HIGH);
-        delay(10000);
-        digitalWrite(A0,LOW);
-   
-  }
  
- else   {
-    lcd.print(" Access denied");
+else if (content.substring(1) != "57 11 48 3E" || content.substring(1) != "7A 6A A9 15" || content.substring(1) != "CA 2D 8E 19")  {
+    lcd.clear();
+    lcd.print("denied");
     digitalWrite(A1,HIGH);
         delay(5000);
         digitalWrite(A1,LOW);
